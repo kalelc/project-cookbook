@@ -1,6 +1,5 @@
-#
-# Cookbook:: rails
-# Recipe:: rbenv
+# Cookbook:: project
+# Recipe:: rails
 #
 # rbenv
 git "#{node.normal["home"]}/.rbenv" do
