@@ -26,3 +26,21 @@ bash 'activate all swap devices' do
   code 'swapon -a'
 end
 
+# essential packages
+execute "update_apt" do
+  command "apt-get update"
+  action :run
+end
+
+node['packages']['essential'].each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
+# extra packages that use application
+node['packages']['extra'].each do |pkg|
+  package pkg do
+    action :install
+  end
+end
