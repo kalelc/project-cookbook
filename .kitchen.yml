@@ -13,4 +13,11 @@ suites:
     run_list:
       - recipe[project::operating_system]
       - recipe[project::nginx]
-    attributes:
+      - recipe[project::rails]
+    attributes:  {
+      user: "vagrant",
+      home: "/home/vagrant",
+      path: "/home/vagrant/app",
+      ruby_version: "2.3.3",
+      rails_version: "5.0.1"
+    }
