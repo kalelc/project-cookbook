@@ -1,0 +1,38 @@
+upstream app{
+  server unix: <%= @server %> fail_timeout=0;
+}
+
+server {
+  listen <%= @list_ports[0] %>;
+  root <%= @root %>;
+  index index.html;
+  
+  server_name <%= @server_name.join(" ") %>;
+  
+  access_log /var/log/nginx/<%= @logs[:access] %>;
+  error_log  /var/log/nginx/<%= @logs[:error] %>;
+  
+  keepalive_timeout <%= @keepalive_timeout %>;
+  
+  location /robots.txt {
+    alias <%= @root %>/robots.txt;
+  }
+
+location / {
+  client_max_body_size 10m;
+  client_body_buffer_size 128k;
+  
+  proxy_buffer_size 4k;
+  proxy_buffers 8 32k;
+  proxy_read_timeout <%= @proxy_read_timeout %>;
+  proxy_send_timeout <%= @proxy_send_timeout %>;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header Host $host;
+  proxy_set_header X-FORWARDED-PROTO $scheme;
+  proxy_hide_header X-Frame-Options;
+  proxy_redirect off;
+  proxy_pass http://app;
+  }
+}
+
