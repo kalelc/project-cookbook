@@ -32,14 +32,14 @@ execute "update_apt" do
   action :run
 end
 
-node['packages']['essential'].each do |pkg|
+node['operating_system']['packages']['essential'].each do |pkg|
   package pkg do
     action :install
   end
 end
 
 # extra packages that use application
-node['packages']['extra'].each do |pkg|
+node['operating_system']['packages']['extra'].each do |pkg|
   package pkg do
     action :install
   end
