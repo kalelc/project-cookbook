@@ -1,0 +1,7 @@
+name 'project'
+maintainer 'Andres Colonia'
+maintainer_email 'andreskal@gmail.com'
+license 'all_rights'
+description 'Cookbook to install and deploy rails App'
+long_description 'This project include all dependences to configure, install and deploy a rails App with server web and database.'
+version '1.0.0'
