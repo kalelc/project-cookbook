@@ -4,7 +4,7 @@ default['nginx']['root'] = "#{normal['path']}/public"
 default['nginx']['path'] = "/etc/nginx"
 default['nginx']['sites_available'] = "/etc/nginx/sites-available"
 default['nginx']['server_name'] = [
-  "app.beetrack.com"
+  "localhost"
 ]
 
 default['nginx']['logs'] = {
