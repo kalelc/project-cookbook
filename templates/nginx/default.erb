@@ -1,5 +1,5 @@
 upstream app{
-  server unix: <%= @server %> fail_timeout=0;
+  server unix:<%= @server %> fail_timeout=0;
 }
 
 server {

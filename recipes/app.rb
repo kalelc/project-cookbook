@@ -37,7 +37,7 @@ node["app"]["puma"]["folders"].each do |dir|
 end
 
 # puma config file
-template "#{node.normal["path"]}/config/puma.rb" do
+template "#{node.normal["path"]}/#{node["app"]["puma"]["file"]}" do
   source "puma/puma.rb.erb"
   owner node.normal["user"]
   group node.normal["user"]
@@ -63,5 +63,10 @@ execute "bundle exec puma" do
     "PATH" => "#{node.normal["home"]}/.rbenv/bin:#{node.normal["home"]}/.rbenv/plugins/ruby-build/bin:#{node.normal["home"]}/.rbenv/shims:#{ENV["PATH"]}",
     "HOME" => node.normal["home"]
   })
-  command "bundle exec puma -C config/puma.rb"
+  command "bundle exec puma -C #{node["app"]["puma"]["file"]}"
+end
+
+# nginx restart
+execute "restart nginx" do
+  command "service nginx restart"
 end

@@ -45,7 +45,8 @@ execute "ruby_with_rails" do
   group node.normal["user"]
   environment({
     "PATH" => "#{node.normal["home"]}/.rbenv/bin:#{node.normal["home"]}/.rbenv/plugins/ruby-build/bin:#{node.normal["home"]}/.rbenv/shims:#{ENV['PATH']}",
-    "HOME" => node.normal["home"]
+    "HOME" => node.normal["home"],
+    "SECRET_KEY_BASE" => SecureRandom.hex(64)
   })
 
   command <<-EOH
