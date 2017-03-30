@@ -14,10 +14,14 @@ suites:
       - recipe[project::operating_system]
       - recipe[project::nginx]
       - recipe[project::rails]
+      - recipe[project::app]
     attributes:  {
       user: "vagrant",
       home: "/home/vagrant",
       path: "/home/vagrant/app",
       ruby_version: "2.3.3",
-      rails_version: "5.0.1"
+      rails_version: "5.0.1",
+      app_source: {
+        url: "https://github.com/kalelc/aws-arq.git"
+      }
     }
