@@ -44,3 +44,11 @@ node['operating_system']['packages']['extra'].each do |pkg|
     action :install
   end
 end
+
+# add bashrc to bash_profile
+execute "echo '[[ -r ~/.bashrc ]] && . ~/.bashrc' > .bash_profile" do
+  user node.normal["user"]
+  group node.normal["user"]
+  cwd node.normal["home"]
+  action :run
+end
