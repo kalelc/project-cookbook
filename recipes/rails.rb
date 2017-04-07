@@ -11,8 +11,8 @@ end
 execute "rbenv" do
   cwd node.normal["home"]
   command <<-EOH
-  echo 'export PATH="#{node.normal["home"]}/.rbenv/bin:$PATH"' >> .bashrc
-  echo 'eval "$(rbenv init -)"' >> .bashrc
+  echo 'export PATH="#{node.normal["home"]}/.rbenv/bin:$PATH"' >> .bash_profile
+  echo 'eval "$(rbenv init -)"' >> .bash_profile
   exec $SHELL
   EOH
 end
@@ -34,7 +34,7 @@ end
 execute "ruby_build" do
   cwd node.normal["home"]
   command <<-EOH
-  echo 'export PATH="#{node.normal["home"]}/.rbenv/plugins/ruby-build/bin:$PATH"' >> .bashrc
+  echo 'export PATH="#{node.normal["home"]}/.rbenv/plugins/ruby-build/bin:$PATH"' >> .bash_profile
   exec $SHELL
   EOH
 end
